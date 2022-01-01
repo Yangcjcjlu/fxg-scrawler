@@ -1,0 +1,16 @@
+{
+    "gcoder": "gcoder-nodejs",
+    "db": {
+        "host": "47.75.56.202",
+        "port": "6000",
+        "database": "bc_hs",
+        "username": "nmw",
+        "password": "nmw",
+        "dialect": "mysql"
+    },
+    "plugins": [
+        "rename",
+        "filter-field",
+        "mysql-ts-type-map"
+    ]
+}

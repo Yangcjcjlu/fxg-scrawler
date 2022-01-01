@@ -1,0 +1,33 @@
+@import "../../assets/scss/common";
+body {
+    font-size: 12px;
+    .logo{
+        text-align: center;
+        margin: 20px;
+    }
+    .login-form{
+        text-align: center;
+        input{
+            width: 90%;
+            height: 30px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            &:focus{
+                outline: none;
+                border: 1px solid $main_green;
+            }
+        }
+        button{
+            height: 35px;
+            width: 92%;
+            background-color: $main_green;
+            color: white;
+            &:focus{
+                outline: none;
+            }
+        }
+       
+    }
+    
+    
+}

@@ -1,0 +1,91 @@
+{
+    "name": "太素爬虫",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "description": "扩展描述",
+    "icons": {
+        "16": "./assets/images/icon.png",
+        "48": "./assets/images/icon.png",
+        "128": "./assets/images/icon.png"
+    },
+    
+    "page_action": {
+        "default_icon": "./assets/images/icon.png",
+        "default_title": "仅在抖店平台支持",
+        "default_popup": "./pages/main/main.html"
+    },
+
+    "background": {
+        "scripts": [
+            "./crawler/daemon.js"
+        ]
+
+    },
+    "content_scripts": [{
+            "matches": [
+                "http://pgxt.gree.com:7909/*"
+            ],
+            "js": [
+                "vendor.js",
+                "./crawler/gree.crawler.js",
+                "./crawler/gree-settlement.crawler.js",
+                "./crawler/gree-settlements.crawler.js",
+                "./crawler/gree-detail.crawler.js",
+                "./crawler/gree-address.crawler.js",
+                "./crawler/gree-feedback.crawler.js",
+                "./crawler/gree-install.crawler.js",
+                "./crawler/gree-install-detail.crawler.js",
+                "./crawler/gree-install-settlement.crawler.js",
+                "./crawler/gree-install-settlements.crawler.js",
+                "./crawler/gree-send.crawler.js",
+                "./crawler/gree-install-send.crawler.js",
+                "./pages/main/main.js"
+            ]
+        },
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "vendor.js",
+                "./crawler/gree.crawler.js"
+            ]
+        },
+        {
+            "matches": [
+                "http://pjgl.gree.com:7101/*"
+            ],
+            "js": [
+                "vendor.js",
+                "./crawler/gree-fitting.crawler.js",
+                "./crawler/gree-fitting-model.crawler.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://cs.midea.com/c-css/wom/archives/install/*"
+            ],
+            "js": [
+                "vendor.js",
+                "./crawler/midea-install-order.crawler.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://cs.midea.com/c-css/render/preView/*"
+            ],
+            "js": [
+                "vendor.js",
+                "./crawler/midea-maintain-order.crawler.js"
+            ]
+        }
+    ],
+    "permissions": [
+        "cookies",
+        "notifications",
+        "storage",
+        "declarativeContent",
+        "http://*/",
+        "https://*/"
+    ]
+}

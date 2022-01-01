@@ -1,0 +1,11 @@
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+$main_green: #4ac273;
+$main_red: #f62f2f;
