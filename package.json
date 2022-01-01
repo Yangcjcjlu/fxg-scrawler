@@ -4,7 +4,7 @@
     "description": "基于chrome扩展的可扩展爬虫",
     "scripts": {
         "watch": "webpack --config webpack.dev.js --watch",
-        "build": "webpack --config webpack.prod.js"
+        "build": "webpack --config webpack.dev.js"
     },
     "author": "",
     "license": "MIT",
@@ -30,7 +30,7 @@
         "xpath": "^0.0.32"
     },
     "devDependencies": {
-        "@types/chrome": "~0.0.63",
+        "@types/chrome": "0.0.63",
         "@types/jquery": "~3.3.1",
         "@types/node": "^16.11.12",
         "@types/react": "^15.0.0",

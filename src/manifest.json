@@ -8,10 +8,9 @@
         "48": "./assets/images/icon.png",
         "128": "./assets/images/icon.png"
     },
-    
-    "page_action": {
+    "browser_action": {
+        "default_title": "爬虫",
         "default_icon": "./assets/images/icon.png",
-        "default_title": "仅在抖店平台支持",
         "default_popup": "./pages/main/main.html"
     },
 
@@ -28,17 +27,6 @@
             "js": [
                 "vendor.js",
                 "./crawler/gree.crawler.js",
-                "./crawler/gree-settlement.crawler.js",
-                "./crawler/gree-settlements.crawler.js",
-                "./crawler/gree-detail.crawler.js",
-                "./crawler/gree-address.crawler.js",
-                "./crawler/gree-feedback.crawler.js",
-                "./crawler/gree-install.crawler.js",
-                "./crawler/gree-install-detail.crawler.js",
-                "./crawler/gree-install-settlement.crawler.js",
-                "./crawler/gree-install-settlements.crawler.js",
-                "./crawler/gree-send.crawler.js",
-                "./crawler/gree-install-send.crawler.js",
                 "./pages/main/main.js"
             ]
         },

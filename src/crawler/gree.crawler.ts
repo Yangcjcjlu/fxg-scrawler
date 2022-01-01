@@ -27,136 +27,7 @@ class GreeCrawler extends BaseCrawler {
 
 
 	crawlList() {
-		//是否在爬取列表
-
-
-
-
-
-		// let greeData = this.getData();
-		// if (greeData.crawlPage) {
-		// 	let currentPage: any = <number>$("#paged").val();//当前页数
-		// 	if (currentPage != greeData.crawlPage) {
-		// 		location.href = `/hjzx/assign/doListAssign?p=1&paged=${greeData.crawlPage}`;
-		// 		return;
-		// 	}
-
-		// 	//设置基础信息
-		// 	let maxId: number = greeData.maxId || 0;//后台已经存取的最大工单号
-		// 	let woIdMap = greeData.woIdMap || {};
-		// 	let woIdArr = JSON.parse(localStorage.getItem("GREE_LIST"))||[];
-		// 	let canCraw: boolean = true;
-		// 	//获取本页所有工单号
-		// 	$("#tbody:first tr").each((trIndex: number, tr: any) => {
-		// 		let woId: string = $(tr).find("td:eq(3)").text().trim().replace(/[\r\n]/g, "");
-		// 		let status: any = this.switchStatus($(tr).find("td:eq(14)").find("b:eq(0)").text());
-		// 		let mobile: any = $(tr).find("td:eq(5)").text().trim().replace(/[\r\n]/g, "");
-		// 		if (parseInt(woId) <= maxId) {//如果发现本页有比maxId小的工单，则结束抓取
-		// 			canCraw = false;
-		// 		} else {
-		// 			woIdMap[woId] = true;
-		// 			let model: any = {
-		// 				id: woId,
-		// 				status: status,
-		// 				mobile: mobile,
-		// 			}
-		// 			woIdArr.push(model)
-		// 		}
-		// 	})
-		// 	localStorage.setItem("GREE_LIST", JSON.stringify(woIdArr));
-		// 	if (canCraw && $("#dv img[title='后一页']").length) {//可抓取并且还有下一页
-		// 		let nextPage: number = (parseInt(currentPage) + 1);
-		// 		greeData.woIdMap=woIdMap;
-		// 		greeData.crawlPage = nextPage;
-		// 		localStorage.setItem(Constants.FACTORY_GREE, JSON.stringify(greeData));
-		// 		location.href = `/hjzx/assign/doListAssign?p=1&paged=${nextPage}`;
-		// 	} else {
-		// 		//处理已经爬到的工单
-		// 		let wcWoArray: Array<WcWorkOrderModel> = [];
-		// 		for (let woId of Object.keys(woIdMap)) {
-		// 			let model: WcWorkOrderModel = new WcWorkOrderModel();
-		// 			let woIdArr = JSON.parse(localStorage.getItem("GREE_LIST"));
-		// 			for (let item of woIdArr) {
-		// 				if (item.id == parseInt(woId)) {
-		// 					model.mobile = item.mobile
-		// 				}
-		// 			}
-		// 			model.bizType=BizType.REPAIR;
-		// 			model.factoryCode = this.getCrawlerCode();
-		// 			model.sourceId = (woId);
-		// 			wcWoArray.push(model);
-		// 		}
-		// 		let cmd = new WcWorkOrderPostCmd(wcWoArray);
-		// 		cmd.setAfterRespDo((cmdSign) => {
-		// 			localStorage.removeItem(Constants.FACTORY_GREE);
-		// 			localStorage.removeItem("GREE_LIST");
-		// 			this.gotoNextCrawlOrder();
-		// 		})
-		// 		Scheduler.exe(cmd);
-		// 	}
-		// } else {
-		// 	let factoryCmd = new ScFactoryGetCmd(this.getCrawlerCode(),BizType.REPAIR);
-		// 	factoryCmd.setAfterRespDo((sign: CmdSignModel) => {
-		// 		let factoryModel: ScFactoryModel = sign.source;
-		// 		let maxId = factoryModel ? factoryModel.maxWoId : 0;
-		// 		greeData.crawlPage = 1;
-		// 		greeData.maxId = maxId;
-		// 		localStorage.setItem(Constants.FACTORY_GREE, JSON.stringify(greeData));
-		// 		location.href = "/hjzx/assign/doListAssign?p=1";
-		// 	})
-		// 	Scheduler.exe(factoryCmd);
-
-		// }
 	}
-
-	// switchStatus(string: string) {
-	// 	let number: number = 0;
-	// 	switch (string) {
-	// 		case "正常关闭":
-	// 			number = 1;
-	// 			break;
-	// 		case "分部报完工":
-	// 			number = 1;
-	// 			break;
-	// 		default:
-	// 			number = 0;
-	// 			break;
-	// 	}
-	// 	return number
-	// }
-
-
-	// gotoNextCrawlOrder() {
-	// 	let greeDetailData = this.getDataByCode(Constants.FACTORY_GREE_DETAIL);
-	// 	let woIdList: Array<number> = greeDetailData.woIdList || [];
-	// 	if (woIdList && woIdList.length) {
-	// 		let nextWoId = woIdList.shift();
-	// 		this.saveDataByCode(Constants.FACTORY_GREE_DETAIL, greeDetailData);
-	// 		location.href = `/hjzx/assign/doLookupAssign.action?pgid=${nextWoId}&p=6`;
-	// 	} else {
-	// 		let cmd = new WcWorkOrderListCmd(this.getCrawlerCode(), ReqCode.WO_LIST_CAN_CRAWL, 1, BizType.REPAIR);
-	// 		cmd.setAfterRespDo((cmdSign) => {
-	// 			let thdOrderArray: Array<WcWorkOrderModel> = cmdSign.source;
-	// 			if (thdOrderArray.length) {
-	// 				let woIdArray: Array<any> = [];
-	// 				for (let order of thdOrderArray) {
-	// 					woIdArray.push({ ordersNo: order.sourceId });
-	// 				}
-	// 				let nextWoId = woIdArray[0].ordersNo;
-	// 				woIdArray.shift()
-	// 				greeDetailData.pageIndex = cmdSign.pageIndex;
-	// 				if (cmdSign.source.length < cmdSign.pageSize) {
-	// 					greeDetailData.isEnd = true;
-	// 				}
-	// 				greeDetailData.woIdList = woIdArray;
-	// 				this.saveDataByCode(Constants.FACTORY_GREE_DETAIL, greeDetailData)//设置可爬取的工单id
-	// 				location.href = `/hjzx/assign/doLookupAssign.action?pgid=${nextWoId}&p=6`;
-	// 			}
-
-	// 		})
-	// 		Scheduler.exe(cmd);
-	// 	}
-	// }
 
 	dateTime2str(dateTime, format) {
 		var z = {
@@ -245,7 +116,7 @@ for (let i = 0; i < array.length; i++) {
 		// 		order.address = customerInfoArray[2];
 		// 	}
 		// }
-		// console.log(JSON.stringify(order));
+		console.log(JSON.stringify(order));
 		orderList.push(order);
 
 		// console.log("orderTime==>" + orderTime);
@@ -259,11 +130,6 @@ return orderList;
 	}
 
 processMsg(request: EventMsgModel): any {
-	// if (request.action == MsgActionCode.CONTENT_RELOAD) {
-	// 	location.reload();
-	// } else if (request.action == MsgActionCode.CLEAR_CACHE) {
-	// 	localStorage.removeItem(Constants.FACTORY_GREE);
-	// }
 	$('.index_actions__2MKuV a').on('click', function () {
 
 	})
@@ -291,45 +157,23 @@ processMsg(request: EventMsgModel): any {
 
 
 	return orderList;
-	// let children = $('.index_actions__2MKuV').children('a')
-	// .each(function (index) {
-	// 	console.log("index==>"+index);
-	// 	let a=$(this);
-	// 	a.click();
-	// 	console.log(a);
-
-	// })
-	// .click(e=>{
-	// 	console.log("click");
-	// });
-
-	// for(let i=0;i<children.length;i++){
-	// 	children[i].click();
-	// }
-
-	// if(!handVerify){
-	// 	alert("请先手动验证地址！");
-
-	// }
-
-
-
-
-
-
-	// greeCrawler.crawl();
 }
 }
 
 let greeCrawler = new GreeCrawler();
 
+
+
 chrome.runtime.onMessage.addListener(
 	function (request: EventMsgModel, sender, sendResponse) {
 		if (request.target == 'content') {
 			let result = greeCrawler.processMsg(request);
+			console.log("result==>"+JSON.stringify(result));
 			if (result) {
 				sendResponse(result);
 			}
+		}else{
+			sendResponse([]);
 		}
 	});
 
@@ -340,12 +184,10 @@ $(document).ready(() => {
 	eventMsg.data = greeCrawler.getCrawlerCode();
 
 	let info = $(document).val();
-	// console.log(info);
 	chrome.runtime.sendMessage(eventMsg, function (response) {
 		localStorage.setItem("sessionToken", response.sessionToken);
 		// if (response.running) {
 		greeCrawler.crawl();
-		// }
 	});
 
 });

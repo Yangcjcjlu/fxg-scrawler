@@ -367,25 +367,29 @@ class MainComponent extends React.Component<any, any> {
             let that = this;
             chrome.tabs.sendMessage(tabs[0].id, eventMsg, (response) => {
                 let ordersList = [];
+                console.log("response==>" + JSON.stringify(response));
 
                 that.chromeLocalGetData("crawlerOrderList", fn => (data) => {
                     ordersList = data.crawlerOrderList;
-                    if (ordersList && response) {
-                        ordersList = this.removeSameItem(ordersList, response, "ordersNo");
+                    if (!ordersList) {
+                        ordersList = [];
                     }
+
+                    if (!response) {
+                        response = [];
+                    }
+
+                    ordersList = this.removeSameItem(ordersList, response, "ordersNo");
+
 
                     this.chromeLocalSetData("crawlerOrderList", ordersList);
                     let factoryModel = this.state.factoryModel;
                     factoryModel.running = false;
+                    console.log("crawlerOrderList==>" + JSON.stringify(ordersList));
                     this.setState({
-                        ordersList: ordersList
-                    }, () => {
-                        this.setState({
-                            crawlerOrderList: ordersList,
-                            factoryModel:factoryModel
-                        })
-
-                    })
+                        crawlerOrderList: ordersList,
+                        factoryModel: factoryModel
+                    });
                 })
             });
         });
